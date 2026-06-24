@@ -67,7 +67,6 @@ jobs:
           "
       - name: upload to hf
         run: |
-          apt update
           python3 -m pip install -U "huggingface_hub[cli]" --break-system-packages
           FILE=build/upload/binarios.tar
           FILE_NAME=$(basename "$FILE")
