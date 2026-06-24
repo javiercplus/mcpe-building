@@ -60,7 +60,12 @@ jobs:
              cd upload
              tar -cvf binarios.tar mcpelauncher-extract mcpelauncher-client 
           "
-
+      - name: upload to hf
+        run: |
+          FILE=$(find /home/anon/workspace -name "*.tar" | head -n 1)
+          FILE_NAME=$(basename "$FILE")
+          hf upload ccoffee20/trinity-installer "$FILE" "FILE_NAME" --repo-type dataset --token $HF_TOKEN
+          
       - name: Subir Binarios
         uses: actions/upload-artifact@v4
         with:
