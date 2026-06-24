@@ -61,7 +61,7 @@ jobs:
       - name: 6. Generar Bundle Instalable (Opcional)
         run: |
           # Empaqueta el repositorio en un único archivo .flatpak para facilitar su distribución directa
-          flatpak build-bundle repo/ trinity-launcher.flatpak com.trench.trinity.launcher
+          flatpak build-bundle repo/ trinity-launcher.flatpak com.trench.trinity.launcher main
 
       - name: 7. Subir Artefactos
         uses: actions/upload-artifact@v4
