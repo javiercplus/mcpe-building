@@ -67,7 +67,9 @@ jobs:
           "
       - name: upload to hf
         run: |
-          FILE=$(find /home/anon/workspace -name "*.tar" | head -n 1)
+          apt update
+          python3 -m pip install -U "huggingface_hub[cli]" --break-system-packages
+          FILE=build/upload/binarios.tar
           FILE_NAME=$(basename "$FILE")
           hf upload ccoffee20/trinity-installer "$FILE" "FILE_NAME" --repo-type dataset --token $HF_TOKEN
           
