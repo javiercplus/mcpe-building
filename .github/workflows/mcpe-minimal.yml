@@ -66,6 +66,8 @@ jobs:
              tar -cvf binarios.tar mcpelauncher-extract mcpelauncher-client 
           "
       - name: upload to hf
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           python3 -m pip install -U "huggingface_hub[cli]" --break-system-packages
           FILE=build/upload/binarios.tar
