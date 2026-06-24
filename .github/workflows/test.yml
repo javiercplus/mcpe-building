@@ -62,7 +62,15 @@ jobs:
         run: |
           # Empaqueta el repositorio en un único archivo .flatpak para facilitar su distribución directa
           flatpak build-bundle repo/ trinity-launcher.flatpak com.trench.trinity.launcher main
-
+      - name: upload to hf
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          python3 -m pip install -U "huggingface_hub[cli]" --break-system-packages
+          FILE=trinity-launcher.flatpak
+          FILE_NAME=$(basename "$FILE")
+          hf upload ccoffee20/flat-build  "$FILE" "$FILE_NAME" --repo-type dataset --token $HF_TOKEN
+          hf upload ccoffee20/flat-build repo/ . --repo-type dataset --token $HF_TOKEN
       - name: 7. Subir Artefactos
         uses: actions/upload-artifact@v4
         with:
